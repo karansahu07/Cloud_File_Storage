@@ -1,11 +1,10 @@
-
-import Authentication from "./components/Authentication";
+import { Outlet } from "react-router-dom";
+import Signup from "./components/Authentication/Signup"
 function App() {
   
   return (
     <div className="">
-      
-     <Authentication/>
+      <Outlet/>
 
     </div>
   );

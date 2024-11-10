@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
+import "./index.css"
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Signup from './components/Authentication/Signup';
+import Login from './components/Authentication/Login';
+
+const appRouter = createBrowserRouter([{
+    path: "/",
+    element: <App />,
+    children: [
+        {
+            path: "/",
+            element: <Signup />,
+        },
+        {
+            path: "/login",
+            element: <Login />,
+        },
+    ]
+}])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <RouterProvider router={appRouter}/>
 
 );
 
