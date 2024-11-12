@@ -1,55 +1,71 @@
-import React from 'react'
+import React from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+// import { FaApple } from "react-icons/fa";
+
 const Login = () => {
-
   return (
-    <div className='w-full grid grid-cols-2   '>
-      <div className="w-1/2 mx-auto flex flex-col gap-12 justify-center ">
-        <div className='flex flex-col gap-2 font-medium text-black'>
-          <h1 className=' text-[24px] sm:text-[32px] '>Welcome Back</h1>
-          <h2 className='text-base'>Enter your Credentials to access your account</h2>
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2">
+      <div className="w-full lg:w-3/4 mx-auto flex flex-col gap-6 p-6 sm:p-10 justify-center">
+        <div className="flex flex-col gap-2 font-medium text-black">
+          <h1 className="text-2xl sm:text-3xl">Welcome Back</h1>
+          <h2 className="text-base">Enter your credentials to access your account</h2>
         </div>
-        <form className='flex flex-col gap-5' >
-          <div className="flex flex-col  font-medium">
-            <label htmlFor='email' className='text-sm '>Email </label>
-            <input type="email" name="email" id="email" className="border-[1px]  border-[#D9D9D9] rounded-[10px] p-[10px]  text-[10px]  " placeholder='Enter your email' />
+        <form className="flex flex-col gap-4">
+          <div className="flex flex-col font-medium">
+            <label htmlFor="email" className="text-sm">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
+              placeholder="Enter your email"
+            />
           </div>
-          <div className="flex flex-col  font-medium ">
-            <div className='flex flex-col  sm:flex-row justify-between'>
-              <label htmlFor='password' className='text-sm' name="password">Password</label>
-              <span className='text-[10px] text-[#0C2A92]'>forgot password</span>
+          <div className="flex flex-col font-medium">
+            <div className="flex flex-col sm:flex-row justify-between">
+              <label htmlFor="password" className="text-sm">Password</label>
+              <span className="text-xs text-blue-700">Forgot password?</span>
             </div>
-            <input type="password" id="password" className="border-[1px]  border-[#D9D9D9] rounded-[10px] p-[10px] text-[10px] " placeholder='Enter your password' />
+            <input
+              type="password"
+              id="password"
+              className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
+              placeholder="Enter your password"
+            />
           </div>
-          <div className='flex gap-1  '>
-            <input type='checkbox' id="remember" name="remember" className=' border-black border-[1px] rounded-sm' />
-            <label htmlFor="remember" className='text-[9px]'>Remember for 30 days </label>
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="remember"
+              name="remember"
+              className="border-gray-300 rounded-sm"
+            />
+            <label htmlFor="remember" className="text-xs">Remember for 30 days</label>
           </div>
-          <div className='flex flex-col gap-16'>
-            <button className=' p-[10px] font-bold text-white bg-[#3A5B22] border-1 border-[#3A5B22] text-sm rounded-[10px]'>Sign Up</button>
-            <div className='flex justify-center items-center mt-4'>
-              <div className='border-[2px] border-[#F5F5F5] flex-grow'></div>
-              <h2 className=' pr-[3px] pl-[3px] text-[9px] font-medium'>Or</h2>
-              <div className='border-[2px] border-[#F5F5F5] flex-grow'></div>
-
+          <div className="flex flex-col gap-6">
+            <button className="p-3 font-bold text-white bg-green-700 border border-green-700 text-sm rounded-lg">
+              Sign In
+            </button>
+            <div className="flex items-center mt-4">
+              <div className="border-t border-gray-200 flex-grow"></div>
+              <h2 className="px-2 text-xs font-medium">Or</h2>
+              <div className="border-t border-gray-200 flex-grow"></div>
             </div>
-            <div className='flex flex-col  lg:flex-row gap-4 '>
-                            <div className='flex gap-1 items-center rounded-[10px] border-[1px] p-1 sm:pl-5 sm:pr-5 sm:pt-1 sm:pb-1 border-[#D9D9D9] text-[12px] font-medium text-black'><FcGoogle className=' text-2xl ' />Sign in with Google</div>
-                            <div className='flex gap-1 items-center rounded-[10px] border-[1px] p-1 sm:pl-5 sm:pr-5 sm:pt-1 sm:pb-1 border-[#D9D9D9] text-[12px] font-medium text-black'><FaApple className='text-2xl' />Sign in with Apple</div>
-                        </div>
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center">
+              <div className="flex items-center gap-2 rounded-lg border p-2 sm:px-4 border-gray-300 text-sm font-medium text-black"><FcGoogle className="text-2xl" />Sign in with Google</div>
+              {/* <div className='flex gap-1 items-center rounded-lg border p-2 sm:px-4 border-gray-300 text-sm font-medium text-black'><FaApple className='text-2xl' />Sign in with Apple</div> */}
+            </div>
           </div>
-          <div className='flex justify-center mt-6 '>
-            <h2 className='font-medium text-sm'>Don't have an account? <a href="/"><span className='text-[#0F3DDE]
-'>Sign Up</span></a></h2>
+          <div className="flex justify-center mt-6">
+            <h2 className="font-medium text-sm">Don't have an account? <a href="/"><span className="text-blue-600">Sign Up</span></a></h2>
           </div>
         </form>
       </div>
-      <div className='h-[1042px] w-[781.5px]  '>
-        <img src="/images/authImg.jpeg" className='rounded-s-[45px]  object-cover' alt="authimg" />
+      <div className="hidden lg:block w-full h-[50vh] lg:h-auto">
+        <img src="/images/authImg.jpeg" className="w-full h-full object-cover rounded-lg" alt="authimg" />
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
