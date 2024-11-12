@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import Signup from "./components/Authentication/Signup"
 function App() {
   
   return (
