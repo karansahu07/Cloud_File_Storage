@@ -20,7 +20,6 @@ const Signup = () => {
         });
     };
 
-   
     const handleEmailVerification = async () => {
         try {
             const response = await axios.post('/Emailverification', { email: formData.email });
@@ -61,7 +60,6 @@ const Signup = () => {
 
     return (
         <div className="w-full grid grid-cols-1 lg:grid-cols-2">
-           
             <div className="w-full lg:w-3/4 mx-auto flex flex-col gap-6 p-6 sm:p-10 justify-center">
                 <h1 className="text-black font-medium text-2xl sm:text-3xl">Get Started Now</h1>
                 
@@ -84,7 +82,7 @@ const Signup = () => {
                             placeholder="Enter your username"
                         />
                     </div>
-                    <div className="flex flex-col font-medium">
+                    <div className="flex flex-col font-medium relative">
                         <label htmlFor="email" className="text-sm">Email</label>
                         <input
                             type="email"
@@ -92,16 +90,15 @@ const Signup = () => {
                             id="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
+                            className="border border-gray-300 rounded-lg p-3 pr-24 text-sm placeholder-gray-400 relative"
                             placeholder="Enter your email"
                         />
-                        <button
-                            type="button"
+                        <span
                             onClick={handleEmailVerification}
-                            className="mt-2 p-2 font-bold text-white bg-blue-500 border border-blue-500 text-sm rounded-lg"
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 text-xs cursor-pointer underline"
                         >
                             Verify Email
-                        </button>
+                        </span>
                     </div>
                     <div className="flex flex-col font-medium">
                         <label htmlFor="phone" className="text-sm">Phone Number</label>
