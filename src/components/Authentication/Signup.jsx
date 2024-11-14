@@ -7,34 +7,46 @@ const Signup = () => {
         username: '',
         email: '',
         password: '',
-        phoneNumber: '', 
+        phoneNumber: '',
         role: 'user' 
     });
     const [message, setMessage] = useState(null);
-    const [phoneError, setPhoneError] = useState(null);
+    const [isVerified, setIsVerified] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
+    };
 
-        if (e.target.name === 'phoneNumber') { 
-            const phonePattern = /^\+91\d{10}$/;
-            if (!phonePattern.test(e.target.value)) {
-                setPhoneError("Phone number must be in the format +91 followed by 10 digits");
+   
+    const handleEmailVerification = async () => {
+        try {
+            const response = await axios.post('/Emailverification', { email: formData.email });
+            if (response.data.success) {
+                setIsVerified(true);
+                setMessage({ type: 'success', text: 'Email verified successfully!' });
             } else {
-                setPhoneError(null);
+                setIsVerified(false);
+                setMessage({ type: 'error', text: 'Email verification failed.' });
             }
+        } catch (error) {
+            setIsVerified(false);
+            setMessage({
+                type: 'error',
+                text: error.response?.data?.message || 'Email verification failed. Please try again.'
+            });
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (phoneError) {
-            setMessage({ type: 'error', text: 'Please correct the phone number format.' });
+        if (!isVerified) {
+            setMessage({ type: 'error', text: 'Please verify your email before signing up.' });
             return;
         }
+
         try {
             const response = await axios.post('/register', formData);
             console.log(response.data);
@@ -49,6 +61,7 @@ const Signup = () => {
 
     return (
         <div className="w-full grid grid-cols-1 lg:grid-cols-2">
+           
             <div className="w-full lg:w-3/4 mx-auto flex flex-col gap-6 p-6 sm:p-10 justify-center">
                 <h1 className="text-black font-medium text-2xl sm:text-3xl">Get Started Now</h1>
                 
@@ -82,21 +95,25 @@ const Signup = () => {
                             className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
                             placeholder="Enter your email"
                         />
+                        <button
+                            type="button"
+                            onClick={handleEmailVerification}
+                            className="mt-2 p-2 font-bold text-white bg-blue-500 border border-blue-500 text-sm rounded-lg"
+                        >
+                            Verify Email
+                        </button>
                     </div>
                     <div className="flex flex-col font-medium">
-                        <label htmlFor="phoneNumber" className="text-sm">Phone Number</label>
+                        <label htmlFor="phone" className="text-sm">Phone Number</label>
                         <input
                             type="tel"
-                            name="phoneNumber" 
+                            name="phoneNumber"
                             id="phoneNumber"
-                            value={formData.phoneNumber} 
+                            value={formData.phone}
                             onChange={handleChange}
                             className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
-                            placeholder="Enter your phone number in format +91XXXXXXXXXX"
+                            placeholder="Enter your phone number (format: +91XXXXXXXXXX)"
                         />
-                        {phoneError && (
-                            <p className="text-red-500 text-xs mt-1">{phoneError}</p>
-                        )}
                     </div>
                     <div className="flex flex-col font-medium">
                         <label htmlFor="password" className="text-sm">Password</label>
