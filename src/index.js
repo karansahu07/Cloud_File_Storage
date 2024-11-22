@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Signup from './components/Authentication/Signup';
 import Login from './components/Authentication/Login';
+import Confirmotp from './components/Authentication/Confirmotp';
+import Changepassword from './components/Authentication/Changepassword';
+import Forgotpassword from './components/Authentication/Forgotpassword';
 
 const appRouter = createBrowserRouter([{
     path: "/",
@@ -16,8 +19,24 @@ const appRouter = createBrowserRouter([{
             element: <Signup />,
         },
         {
+            path: "/register",
+            element: <Signup />,
+        },
+        {
             path: "/login",
             element: <Login />,
+        },
+        {
+            path: "/confirmotp",
+            element: <Confirmotp />,
+        },
+        {
+            path: "/Changepassword",
+            element: <Changepassword />,
+        },
+        {
+            path: "/Forgotpassword",
+            element: <Forgotpassword />,
         },
     ]
 }])
