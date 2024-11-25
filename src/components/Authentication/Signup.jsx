@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 
 const Register = () => {
   const {
@@ -13,9 +15,22 @@ const Register = () => {
 
   const password = watch("password");
 
-  const onSubmit = (data) => {
-    console.log("Form Data: ", data);
-  };
+ // Form submission handler
+ const onSubmit = async (data) => {
+  console.log("Form Data: ", data);
+
+  try {
+    // API request to register the user
+    const response = await axios.post("http://localhost:5000/api/register", data);
+    console.log("Registration successful:", response.data);
+
+    // Optionally, redirect to login or show a success message
+    alert("Registration successful! Please log in.");
+  } catch (error) {
+    console.error("Registration error:", error.response?.data || error.message);
+    alert(error.response?.data?.error || "An error occurred during registration");
+  }
+};
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2">
