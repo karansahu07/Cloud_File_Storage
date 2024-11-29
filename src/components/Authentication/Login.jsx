@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -10,9 +10,18 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log("Login Data: ", data);
 
+    
+    const isLoginSuccessful = true; 
+    if (isLoginSuccessful) {
+      navigate("/home"); // Navigate to the Home page
+    } else {
+      console.error("Login failed"); 
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Confirmotp = () => {
   const {
@@ -7,14 +8,24 @@ const Confirmotp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log("OTP Data: ", data);
+
+    const isOtpValid = true; 
+
+    if (isOtpValid) {
+      console.log("OTP Verified Successfully");
+      navigate("/home"); // Redirect to login page after successful OTP verification
+    } else {
+      console.error("Invalid OTP");
+    }
   };
 
   const handleResend = () => {
     console.log("Resend OTP triggered");
-
+    
   };
 
   return (

@@ -9,6 +9,7 @@ import Login from './components/Authentication/Login';
 import Confirmotp from './components/Authentication/Confirmotp';
 import Changepassword from './components/Authentication/Changepassword';
 import Forgotpassword from './components/Authentication/Forgotpassword';
+import Home from './components/Authentication/Home';
 
 const appRouter = createBrowserRouter([{
     path: "/",
@@ -29,6 +30,10 @@ const appRouter = createBrowserRouter([{
         {
             path: "/confirmotp",
             element: <Confirmotp />,
+        },
+        {
+            path: "/home",
+            element: <Home />,
         },
         {
             path: "/Changepassword",

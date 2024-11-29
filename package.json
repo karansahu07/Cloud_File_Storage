@@ -1,7 +1,7 @@
 {
   "name": "cloud_file_storage",
   "version": "0.1.0",
-  "proxy": "https://d084-2401-4900-8845-6543-e9e6-42b2-fd0a-7597.ngrok-free.app/api/v1/User",
+  "proxy": "http://localhost:5000/api/auth",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",

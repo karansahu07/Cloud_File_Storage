@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -11,10 +12,18 @@ const Register = () => {
     watch,
   } = useForm();
 
+  const navigate = useNavigate();
   const password = watch("password");
 
-  const onSubmit = (data) => {
-    console.log("Form Data: ", data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("/register", data);
+      console.log("Registration successful: ", response.data);
+      navigate("/confirmotp", { state: { email: data.email } });
+    } catch (error) {
+      console.error("Registration error: ", error.response?.data || error.message);
+      
+    }
   };
 
   return (
@@ -24,21 +33,20 @@ const Register = () => {
         <h1 className="text-black font-medium text-2xl sm:text-3xl">Get Started Now</h1>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          {/* Full Name Field */}
+          {/* Role Dropdown Field */}
           <div className="flex flex-col font-medium">
-            <label htmlFor="name" className="text-sm">Full Name</label>
-            <input
-              {...register("name", {
-                required: "Full name is required",
-                pattern: {
-                  value: /^[A-Za-z\s]+$/,
-                  message: "Full name must only contain letters and spaces",
-                },
+            <label htmlFor="role" className="text-sm">Role</label>
+            <select
+              {...register("role", {
+                required: "Role is required",
               })}
               className="border border-gray-300 rounded-lg p-3 text-sm placeholder-gray-400"
-              placeholder="Enter your full name"
-            />
-            {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
+            >
+              <option value="">Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+            {errors.role && <p className="text-red-500 text-xs">{errors.role.message}</p>}
           </div>
 
           {/* Email Field */}
@@ -150,7 +158,7 @@ const Register = () => {
           {/* Google Sign-In */}
           <div className="flex justify-center items-center gap-4 mt-4">
             <div className="flex items-center gap-2 rounded-lg border p-2 sm:px-4 border-gray-300 text-sm font-medium text-black cursor-pointer">
-              <FcGoogle className="text-2xl" /> Sign  with Google
+              <FcGoogle className="text-2xl" /> Sign with Google
             </div>
           </div>
 
