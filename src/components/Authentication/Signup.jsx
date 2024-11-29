@@ -15,6 +15,7 @@ const Register = () => {
   const navigate = useNavigate();
   const password = watch("password");
 
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("/register", data);
