@@ -1,7 +1,7 @@
 {
   "name": "cloud_file_storage",
   "version": "0.1.0",
-  "proxy": "https://cloudappbackend.onrender.com/api/auth",
+  "proxy": "https://cloudappbackend.onrender.com",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
