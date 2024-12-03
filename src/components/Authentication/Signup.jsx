@@ -19,7 +19,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await axios.post("https://cors-anywhere.herokuapp.com/https://cloudappbackend.onrender.com/api/auth/register", data);
+      const response = await axios.post("https://cloudappbackend.onrender.com/api/auth/register", data);
       console.log("Registration successful: ", response.data);
       navigate("/confirmotp", { state: { email: data.email } });
     } catch (error) {
