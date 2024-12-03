@@ -18,7 +18,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("/register", data);
+      const response = await axios.post("/api/auth/register", data);
       console.log("Registration successful: ", response.data);
       navigate("/confirmotp", { state: { email: data.email } });
     } catch (error) {
